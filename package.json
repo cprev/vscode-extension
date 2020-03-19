@@ -1,5 +1,6 @@
 {
 	"name": "cprev-vscode-extension",
+	"publisher":"cprev",
 	"displayName": "cprev-vscode-extension",
 	"description": "Helps prevent git merge conflicts",
 	"version": "0.0.1",
@@ -43,5 +44,9 @@
 	},
 	"dependencies": {
 		"@oresoftware/json-stream-parser": "0.0.124"
-	}
+	},
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/cprev/vscode-extension.git"
+	  }
 }

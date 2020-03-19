@@ -41,7 +41,7 @@ export function activate(context: vscode.ExtensionContext) {
 		// The code you place here will be executed every time your command is executed
 
 		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World xx!');
+		vscode.window.showInformationMessage('The CPREV extension has been invoked.');
 	});
 
 	context.subscriptions.push(disposable);
