@@ -1,9 +1,9 @@
 {
 	"name": "cprev-vscode-extension",
-	"publisher":"cprev",
+	"publisher": "cprev",
 	"displayName": "cprev-vscode-extension",
 	"description": "Helps prevent git merge conflicts",
-	"version": "0.0.1",
+	"version": "0.1.0",
 	"engines": {
 		"vscode": "^1.43.0"
 	},
@@ -48,5 +48,5 @@
 	"repository": {
 		"type": "git",
 		"url": "git://github.com/cprev/vscode-extension.git"
-	  }
+	}
 }
