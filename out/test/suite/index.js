@@ -1,12 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.run = run;
 const path = require("path");
-const Mocha = require("mocha");
+const mocha_1 = require("mocha");
 const glob = require("glob");
 function run() {
     // Create the mocha test
-    const mocha = new Mocha({
+    const mocha = new mocha_1.default({
         ui: 'tdd',
+        timeout: 5000,
     });
     mocha.useColors(true);
     const testsRoot = path.resolve(__dirname, '..');
@@ -35,5 +37,4 @@ function run() {
         });
     });
 }
-exports.run = run;
 //# sourceMappingURL=index.js.map

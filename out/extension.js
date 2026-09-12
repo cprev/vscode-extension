@@ -1,5 +1,7 @@
 'use strict';
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.activate = activate;
+exports.deactivate = deactivate;
 const vscode = require("vscode");
 const net = require("net");
 const json_stream_parser_1 = require("@oresoftware/json-stream-parser");
@@ -30,7 +32,6 @@ function activate(context) {
     });
     context.subscriptions.push(disposable);
 }
-exports.activate = activate;
 // this method is called when your extension is deactivated
 function deactivate() {
     if (!server.listening) {
@@ -47,5 +48,4 @@ function deactivate() {
         vscode.window.showInformationMessage('cprev extension deactivated.');
     });
 }
-exports.deactivate = deactivate;
 //# sourceMappingURL=extension.js.map

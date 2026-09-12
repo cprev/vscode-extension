@@ -58,3 +58,17 @@ Added features X, Y, and Z.
 * [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
 
 **Enjoy!**
+
+## Development verification
+
+Use Node 22.22.1 and `npm ci --ignore-scripts`, then `npm test`. The pretest
+command compiles all TypeScript and requires zero ESLint warnings. The test
+runner uses the maintained `@vscode/test-electron` package and a pinned VS Code
+1.104.3 development host; Linux CI supplies Xvfb. It checks real extension
+activation, command dispatch, and a bounded synthetic loopback connection.
+The generated `out/` files must match a fresh compile. Tests use an isolated
+editor profile and do not install or publish a Marketplace extension.
+
+TypeScript 5.6.3 satisfies the existing lint-tool peer range while retaining the
+Node 12 and VS Code 1.43 API declaration baseline. The host test above certifies
+VS Code 1.104.3 only; it is not evidence for every version in the declared range.
