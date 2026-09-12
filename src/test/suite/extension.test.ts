@@ -1,15 +1,39 @@
 import * as assert from 'assert';
-
-// You can import and use all API from the 'vscode' module
-// as well as import your extension to test it
+import * as net from 'net';
 import * as vscode from 'vscode';
-// import * as myExtension from '../extension';
+import { deactivate } from '../../extension';
 
-suite('Extension Test Suite', () => {
-	vscode.window.showInformationMessage('Start all tests.');
+suite('Extension host integration', () => {
+    suiteSetup(async () => {
+        const extension = vscode.extensions.getExtension('cprev.cprev-vscode-extension');
+        assert.ok(extension, 'development extension must be installed');
+        await extension!.activate();
+        assert.strictEqual(extension!.isActive, true);
+    });
 
-	test('Sample test', () => {
-		assert.equal(-1, [1, 2, 3].indexOf(5));
-		assert.equal(-1, [1, 2, 3].indexOf(0));
-	});
+    suiteTeardown(() => deactivate());
+
+    test('activation registers the command in the real extension host', async () => {
+        const commands = await vscode.commands.getCommands(true);
+        assert.ok(commands.includes('extension.helloWorld123'));
+    });
+
+    test('the host dispatches the registered command without an error', async () => {
+        await vscode.commands.executeCommand('extension.helloWorld123');
+    });
+
+    test('the activated server accepts and closes a real loopback connection', () => {
+        return new Promise<void>((resolve, reject) => {
+            const socket = net.createConnection({ host: '127.0.0.1', port: 3119 });
+            socket.setTimeout(2000);
+            socket.once('error', reject);
+            socket.once('timeout', () => socket.destroy(new Error('local connection timed out')));
+            socket.once('connect', () => socket.end());
+            socket.once('close', hadError => {
+                if (!hadError) {
+                    resolve();
+                }
+            });
+        });
+    });
 });

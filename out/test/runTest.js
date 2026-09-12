@@ -10,7 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const path = require("path");
-const vscode_test_1 = require("vscode-test");
+const test_electron_1 = require("@vscode/test-electron");
 function main() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -21,7 +21,12 @@ function main() {
             // Passed to --extensionTestsPath
             const extensionTestsPath = path.resolve(__dirname, './suite/index');
             // Download VS Code, unzip it and run the integration test
-            yield vscode_test_1.runTests({ extensionDevelopmentPath, extensionTestsPath });
+            yield (0, test_electron_1.runTests)({
+                extensionDevelopmentPath,
+                extensionTestsPath,
+                version: '1.104.3',
+                launchArgs: ['--disable-extensions', '--disable-workspace-trust', '--skip-welcome']
+            });
         }
         catch (err) {
             console.error('Failed to run tests');

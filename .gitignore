@@ -5,3 +5,5 @@ tmp
 temp
 tmp/worktrees
 temp/worktrees
+
+.vscode-test/
