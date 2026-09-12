@@ -1,53 +1,63 @@
 {
-	"name": "cprev-vscode-extension",
-	"publisher": "cprev",
-	"displayName": "cprev-vscode-extension",
-	"description": "Helps prevent git merge conflicts",
-	"version": "0.1.123",
-	"engines": {
-		"vscode": "^1.43.0"
-	},
-	"categories": [
-		"Other"
-	],
-	"activationEvents": [
-		"onCommand:extension.helloWorld123",
-		"workspaceContains:**/.cprev.js"
-	],
-	"main": "./out/extension.js",
-	"contributes": {
-		"commands": [
-			{
-				"command": "extension.helloWorld123",
-				"title": "Hello World 1"
-			}
-		]
-	},
-	"scripts": {
-		"vscode:prepublish": "npm run compile",
-		"compile": "tsc -p .",
-		"watch": "tsc -watch -p .",
-		"pretest": "npm run compile && npm run lint",
-		"test": "node ./out/test/runTest.js"
-	},
-	"devDependencies": {
-		"@types/glob": "^7.1.1",
-		"@types/mocha": "^7.0.1",
-		"@types/node": "^12.11.7",
-		"@types/vscode": "^1.43.0",
-		"eslint": "^10.8.1",
-		"@typescript-eslint/parser": "^8.66.0",
-		"@typescript-eslint/eslint-plugin": "^8.66.0",
-		"glob": "^7.1.6",
-		"mocha": "^10.2.0",
-		"typescript": "^3.7.5",
-		"vscode-test": "^1.3.0"
-	},
-	"dependencies": {
-		"@oresoftware/json-stream-parser": "0.0.124"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git://github.com/cprev/vscode-extension.git"
-	}
+  "name": "cprev-vscode-extension",
+  "publisher": "cprev",
+  "displayName": "cprev-vscode-extension",
+  "description": "Helps prevent git merge conflicts",
+  "version": "0.1.123",
+  "engines": {
+    "vscode": "^1.43.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:extension.helloWorld123",
+    "workspaceContains:**/.cprev.js"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "extension.helloWorld123",
+        "title": "Hello World 1"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p .",
+    "watch": "tsc -watch -p .",
+    "pretest": "npm run compile && npm run lint",
+    "test": "node ./out/test/runTest.js",
+    "lint:ores": "if [ -f .ores-lint/lint.sh ]; then sh .ores-lint/lint.sh; else echo 'ores-lint not installed'; fi",
+    "prepublishOnly": "npm run lint:ores"
+  },
+  "devDependencies": {
+    "@types/glob": "^7.1.1",
+    "@types/mocha": "^7.0.1",
+    "@types/node": "^12.11.7",
+    "@types/vscode": "^1.43.0",
+    "eslint": "^10.8.1",
+    "@typescript-eslint/parser": "^8.66.0",
+    "@typescript-eslint/eslint-plugin": "^8.66.0",
+    "glob": "^7.1.6",
+    "mocha": "^10.2.0",
+    "typescript": "^3.7.5",
+    "vscode-test": "^1.3.0"
+  },
+  "dependencies": {
+    "@oresoftware/json-stream-parser": "0.0.124"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/cprev/vscode-extension.git"
+  },
+  "oresLint": {
+    "note": "Declared, not installed. ores-lint resolves these from a global install - see .ores-lint/README.md",
+    "requires": {
+      "eslint": ">=9",
+      "typescript-eslint": ">=8 (optional; without it .ts files are skipped)"
+    },
+    "install": "npm i -g eslint typescript-eslint"
+  }
 }
