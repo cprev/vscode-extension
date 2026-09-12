@@ -8,9 +8,9 @@ function run() {
     // Create the mocha test
     const mocha = new mocha_1.default({
         ui: 'tdd',
+        color: true,
         timeout: 5000,
     });
-    mocha.useColors(true);
     const testsRoot = path.resolve(__dirname, '..');
     return new Promise((c, e) => {
         glob('**/**.test.js', { cwd: testsRoot }, (err, files) => {
