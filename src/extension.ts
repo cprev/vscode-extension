@@ -4,7 +4,7 @@ import * as vscode from 'vscode';
 import * as net from 'net';
 import {JSONParser} from '@oresoftware/json-stream-parser';
 
-const connections = new Set<net.Socket>()
+const connections = new Set<net.Socket>();
 
 
 const server  = net.createServer(s => {
